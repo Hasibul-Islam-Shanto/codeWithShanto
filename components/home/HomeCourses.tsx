@@ -54,7 +54,7 @@ const HomeCourses = () => {
         <div className="flex items-center justify-between">
           <SectionTitle>Courses</SectionTitle>
           <Link
-            href={""}
+            href={"/courses"}
             className=" text-sm font-medium  hover:opacity-80 flex items-center gap-1"
           >
             Browse All <ArrowRightIcon className="h-4 w-4" />
