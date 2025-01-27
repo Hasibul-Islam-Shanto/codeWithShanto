@@ -15,10 +15,6 @@ export const fetchCourseLists = async (): Promise<CoursesResponse> => {
       },
     });
 
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-
     const res = await response.json();
     if (res.status !== 200) {
       throw new Error(res.message || "Failed to fetch hotels!");
