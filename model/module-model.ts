@@ -1,12 +1,12 @@
-import mongoose, { Schema, Document } from "mongoose";
+import mongoose, { Schema, Document, Types } from "mongoose";
 
 interface IModule extends Document {
   title: string;
   description: string;
   status: string;
   slug: string;
-  course: string;
-  lessonIds: string[];
+  course: Types.ObjectId;
+  lessonIds: [Types.ObjectId];
 }
 
 const moduleSchema = new Schema<IModule>({
@@ -26,14 +26,14 @@ const moduleSchema = new Schema<IModule>({
     required: true,
     type: String,
   },
-  course: {
-    required: true,
-    type: String,
-  },
-  lessonIds: {
-    required: true,
-    type: [String],
-  },
+  course: { type: Schema.Types.ObjectId, ref: "Course" },
+  lessonIds: [
+    {
+      required: true,
+      type: Schema.Types.ObjectId,
+      ref: "Lesson",
+    },
+  ],
 });
 
 export const Module = (mongoose.models.Module ||

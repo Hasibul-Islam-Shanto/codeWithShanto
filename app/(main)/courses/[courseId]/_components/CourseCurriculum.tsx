@@ -15,8 +15,11 @@ import {
   Video,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { fetchModulesByCourseId } from "@/controller/module";
 
-const CourseCurriculum = () => {
+const CourseCurriculum = async ({ courseId }: { courseId: string }) => {
+  console.log(courseId);
+  const response = await fetchModulesByCourseId(courseId);
   return (
     <>
       <div className="flex gap-x-5 items-center justify-center flex-wrap mt-4 mb-6 text-gray-600 text-sm">
@@ -27,9 +30,6 @@ const CourseCurriculum = () => {
         <span className="flex items-center gap-1.5">
           <Clock10 className="w-4 h-4" />
           50+ Hours
-        </span>
-        <span className="flex items-center gap-1.5">
-          <Radio className="w-4 h-4" />4 Live Class
         </span>
       </div>
 
