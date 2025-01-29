@@ -7,79 +7,53 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import TestimonialCard from "./TestimonialCard";
+import { fetchTestimonialsByCourseId } from "@/controller/testimonials";
+import ShowError from "@/components/show-error";
 
-const courses = [
-  {
-    id: 1,
-    title: "Design",
-    thumbnail: "/assets/images/categories/design.jpg",
-  },
+const Testimonials = async ({ courseId }: { courseId: string }) => {
+  try {
+    const response = await fetchTestimonialsByCourseId(courseId);
+    const testimonials = response.data;
 
-  {
-    id: 3,
-    title: "Development",
-    thumbnail: "/assets/images/categories/development.jpg",
-  },
-  {
-    id: 4,
-    title: "Marketing",
-    thumbnail: "/assets/images/categories/marketing.jpg",
-  },
-  {
-    id: 5,
-    title: "IT & Software",
-    thumbnail: "/assets/images/categories/it_software.jpg",
-  },
-  {
-    id: 6,
-    title: "Personal Development",
-    thumbnail: "/assets/images/categories/personal_development.jpg",
-  },
-  {
-    id: 7,
-    title: "Business",
-    thumbnail: "/assets/images/categories/business.jpg",
-  },
-  {
-    id: 8,
-    title: "Photography",
-    thumbnail: "/assets/images/categories/photography.jpg",
-  },
-  {
-    id: 9,
-    title: "Music",
-    thumbnail: "/assets/images/categories/music.jpg",
-  },
-];
-const Testimonials = () => {
-  return (
-    <>
-      <section className="pb-8 md:pb-12 lg:pb-24">
-        <div className="container">
-          <SectionTitle className="mb-6">Testimonials</SectionTitle>
-          <Carousel
-            opts={{
-              align: "start",
-            }}
-            className="max-2xl:w-[90%] w-full mx-auto"
-          >
-            <CarouselPrevious />
-            <CarouselNext />
-            <CarouselContent className="py-4">
-              {courses.map((course) => (
-                <CarouselItem
-                  key={course.id}
-                  className="md:basis-1/2 lg:basis-1/3"
-                >
-                  <TestimonialCard />
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-          </Carousel>
-        </div>
-      </section>
-    </>
-  );
+    return (
+      <>
+        {testimonials?.length > 0 ? (
+          <section className="pb-8 md:pb-12 lg:pb-24">
+            <div className="container">
+              <SectionTitle className="mb-6">Testimonials</SectionTitle>
+              <Carousel
+                opts={{
+                  align: "start",
+                }}
+                className="max-2xl:w-[90%] w-full mx-auto"
+              >
+                <CarouselPrevious />
+                <CarouselNext />
+                <CarouselContent className="py-4">
+                  {testimonials.map((testimonial) => (
+                    <CarouselItem
+                      key={testimonial._id}
+                      className="md:basis-1/2 lg:basis-1/3"
+                    >
+                      <TestimonialCard testimonial={testimonial} />
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+              </Carousel>
+            </div>
+          </section>
+        ) : (
+          <div className="w-full flex justify-center items-center py-5">
+            <span className="text-slate-500 text-xl font-[500]">
+              Currently no testimonials are available.
+            </span>
+          </div>
+        )}
+      </>
+    );
+  } catch (error) {
+    return <ShowError error={error as Error} />;
+  }
 };
 
 export default Testimonials;
