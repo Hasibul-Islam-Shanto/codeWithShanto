@@ -1,5 +1,5 @@
 import connectMongo from "@/config/db-connect";
-import { getModulesByCourseId } from "@/services/modules.query";
+import { getTestimonialsByCourseId } from "@/services/testimonials.query";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(
@@ -8,10 +8,10 @@ export async function GET(
 ) {
   try {
     await connectMongo();
-    const modules = await getModulesByCourseId(params.courseId);
+    const testimonials = await getTestimonialsByCourseId(params.courseId);
     return NextResponse.json({
       status: 200,
-      data: modules,
+      data: testimonials,
     });
   } catch (error) {
     if (error instanceof Error) {

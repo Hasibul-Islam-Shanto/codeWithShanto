@@ -1,6 +1,14 @@
+import { Module } from "@/types/module";
+
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 
-export const fetchModulesByCourseId = async (courseId: string) => {
+interface ModuleResponse {
+  status: number;
+  data: Module[];
+}
+export const fetchModulesByCourseId = async (
+  courseId: string
+): Promise<ModuleResponse> => {
   try {
     const response = await fetch(`${baseUrl}/api/courses/${courseId}/modules`, {
       method: "GET",

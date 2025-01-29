@@ -4,6 +4,8 @@ import Testimonials from "./_components/Testimonials";
 import RelatedCourses from "./_components/RelatedCourses";
 import { fetchCourseById } from "@/controller/course";
 import ShowError from "@/components/show-error";
+import { Suspense } from "react";
+import Loader from "@/components/loader";
 
 const SingleCoursePage = async ({
   params,
@@ -17,7 +19,16 @@ const SingleCoursePage = async ({
       <>
         <CourseDetailsIntro course={course} />
         <CourseDetails course={course} />
-        <Testimonials />
+        <Suspense
+          fallback={
+            <div className="flex justify-center items-center">
+              <Loader />
+            </div>
+          }
+        >
+          <Testimonials courseId={course._id} />
+        </Suspense>
+
         <RelatedCourses />
       </>
     );
