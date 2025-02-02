@@ -1,26 +1,28 @@
-import { formatPrice } from "@/lib/formatPrice";
-import { ArrowRight, BookOpen } from "lucide-react";
-import Image from "next/image";
-import Link from "next/link";
-import React from "react";
-import { Button } from "../ui/button";
-import { Courses } from "@/types/course";
+import { ArrowRight, BookOpen } from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
+import React from 'react';
 
-const CourseCard = ({ course }: { course: Courses }) => {
+import { formatPrice } from '@/lib/format-price';
+import { Courses } from '@/types/course';
+
+import { Button } from '../ui/button';
+
+const HomeCourseCard = ({ course }: { course: Courses }) => {
   return (
     <>
       <Link href={`/courses/${course._id}`}>
-        <div className="group hover:shadow-sm overflow-hidden border rounded-lg p-3 h-full hover:scale-105 transition-all duration-500 ease-in-out">
-          <div className="relative w-full aspect-video rounded-md overflow-hidden">
+        <div className="group h-full overflow-hidden rounded-lg border p-3 transition-all duration-500 ease-in-out hover:scale-105 hover:shadow-sm">
+          <div className="relative aspect-video w-full overflow-hidden rounded-md">
             <Image
               src={`/assets/images/courses/${course?.thumbnail}`}
-              alt={"course"}
+              alt={'course'}
               className="object-cover"
               fill
             />
           </div>
           <div className="flex flex-col pt-2">
-            <div className="text-lg md:text-base font-medium group-hover:text-sky-700 line-clamp-2">
+            <div className="line-clamp-2 text-lg font-medium group-hover:text-sky-700 md:text-base">
               {course?.title}
             </div>
             <p className="text-xs text-muted-foreground">
@@ -35,13 +37,15 @@ const CourseCard = ({ course }: { course: Courses }) => {
               </div>
             </div>
 
-            <div className="flex items-center justify-between mt-4">
-              <p className="text-md md:text-sm font-medium text-slate-700">
+            <div className="mt-4 flex items-center justify-between">
+              <p className="text-md font-medium text-slate-700 md:text-sm">
                 {formatPrice(course?.price)}
+                49
               </p>
+
               <Button
                 variant="ghost"
-                className="text-xs text-sky-700 h-7 gap-1"
+                className="h-7 gap-1 text-xs text-sky-700"
               >
                 Enroll
                 <ArrowRight className="w-3" />
@@ -54,4 +58,4 @@ const CourseCard = ({ course }: { course: Courses }) => {
   );
 };
 
-export default CourseCard;
+export default HomeCourseCard;

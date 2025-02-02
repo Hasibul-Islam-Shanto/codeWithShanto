@@ -1,7 +1,7 @@
-import mongoose, { Schema, Document } from "mongoose";
+import mongoose, { Schema, Document } from 'mongoose';
 
 interface ISocialMedia {
-  [key: string]: string; 
+  [key: string]: string;
 }
 
 interface IUser extends Document {
@@ -61,4 +61,4 @@ const userSchema = new Schema<IUser>({
 });
 
 export const User = (mongoose.models.User ||
-  mongoose.model<IUser>("User", userSchema)) as mongoose.Model<IUser>;
+  mongoose.model<IUser>('User', userSchema)) as mongoose.Model<IUser>;

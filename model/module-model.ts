@@ -1,4 +1,4 @@
-import mongoose, { Schema, Document, Types } from "mongoose";
+import mongoose, { Schema, Document, Types } from 'mongoose';
 
 interface IModule extends Document {
   title: string;
@@ -26,15 +26,15 @@ const moduleSchema = new Schema<IModule>({
     required: true,
     type: String,
   },
-  course: { type: Schema.Types.ObjectId, ref: "Course" },
+  course: { type: Schema.Types.ObjectId, ref: 'Course' },
   lessonIds: [
     {
       required: true,
       type: Schema.Types.ObjectId,
-      ref: "Lesson",
+      ref: 'Lesson',
     },
   ],
 });
 
 export const Module = (mongoose.models.Module ||
-  mongoose.model<IModule>("Module", moduleSchema)) as mongoose.Model<IModule>;
+  mongoose.model<IModule>('Module', moduleSchema)) as mongoose.Model<IModule>;

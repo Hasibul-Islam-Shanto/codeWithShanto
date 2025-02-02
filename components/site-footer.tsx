@@ -1,5 +1,6 @@
-import { cn } from "@/lib/utils";
-import Logo from "./logo";
+import { cn } from '@/lib/utils';
+
+import Logo from './logo';
 
 const Footer = ({ className }: { className?: string }) => {
   return (

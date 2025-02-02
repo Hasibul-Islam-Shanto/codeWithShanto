@@ -1,9 +1,11 @@
-import { Accordion } from "@/components/ui/accordion";
-import { BookCheck, Clock10 } from "lucide-react";
-import { fetchModulesByCourseId } from "@/controller/module";
-import CourseModuleList from "./CourseModuleList";
-import ShowError from "@/components/show-error";
-import { Module } from "@/types/module";
+import { BookCheck, Clock10 } from 'lucide-react';
+
+import ShowError from '@/components/show-error';
+import { Accordion } from '@/components/ui/accordion';
+import { fetchModulesByCourseId } from '@/controller/module';
+import { Module } from '@/types/module';
+
+import CourseModuleList from './course-module-list';
 
 const CourseCurriculum = async ({ courseId }: { courseId: string }) => {
   try {
@@ -14,24 +16,24 @@ const CourseCurriculum = async ({ courseId }: { courseId: string }) => {
       (total: number, currentValue: Module) => {
         return total + currentValue.lessonIds.length;
       },
-      0
+      0,
     );
 
     const totalHours = modules.reduce((total: number, currentValue: Module) => {
       return total + currentValue.duration;
     }, 0);
 
-    const accordionItems = modules.map((module) => module.slug);
+    const accordionItems = modules.map(module => module.slug);
 
     return (
       <>
-        <div className="flex gap-x-5 items-center justify-center flex-wrap mt-4 mb-6 text-gray-600 text-sm">
+        <div className="mb-6 mt-4 flex flex-wrap items-center justify-center gap-x-5 text-sm text-gray-600">
           <span className="flex items-center gap-1.5">
-            <BookCheck className="w-4 h-4" />
+            <BookCheck className="h-4 w-4" />
             {totalChapters} Chapters
           </span>
           <span className="flex items-center gap-1.5">
-            <Clock10 className="w-4 h-4" />
+            <Clock10 className="h-4 w-4" />
             {(totalHours / 60).toPrecision(2)} Hours
           </span>
         </div>
@@ -42,13 +44,13 @@ const CourseCurriculum = async ({ courseId }: { courseId: string }) => {
             type="multiple"
             className="w-full"
           >
-            {modules?.map((module) => (
+            {modules?.map(module => (
               <CourseModuleList key={module._id} module={module} />
             ))}
           </Accordion>
         ) : (
-          <div className="w-full flex justify-center items-center py-5">
-            <span className="text-slate-500 text-xl font-[500]">
+          <div className="flex w-full items-center justify-center py-5">
+            <span className="text-xl font-[500] text-slate-500">
               Currently no modules are available.
             </span>
           </div>

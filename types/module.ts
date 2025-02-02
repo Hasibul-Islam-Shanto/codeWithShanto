@@ -1,4 +1,4 @@
-import { Lesson } from "./lesson";
+import { Lesson } from './lesson';
 
 export type Module = {
   _id: string;

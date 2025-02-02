@@ -1,8 +1,9 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import MobileNav from "../mobile-nav";
-import { Menu, X } from "lucide-react";
+import { Menu, X } from 'lucide-react';
+import { useState } from 'react';
+
+import MobileNav from '../mobile-nav';
 
 const MobileViewNav = ({
   items,

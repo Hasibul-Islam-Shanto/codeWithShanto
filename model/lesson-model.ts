@@ -1,5 +1,4 @@
-import mongoose, { Schema, Document } from "mongoose";
-
+import mongoose, { Schema, Document } from 'mongoose';
 
 interface ILesson extends Document {
   title: string;
@@ -43,4 +42,4 @@ const lessonSchema = new Schema<ILesson>({
 });
 
 export const Lesson = (mongoose.models.Lesson ||
-  mongoose.model<ILesson>("Lesson", lessonSchema)) as mongoose.Model<ILesson>;
+  mongoose.model<ILesson>('Lesson', lessonSchema)) as mongoose.Model<ILesson>;

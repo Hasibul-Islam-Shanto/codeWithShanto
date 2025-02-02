@@ -1,59 +1,60 @@
-"use client";
+'use client';
+import { useState } from 'react';
+
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "@/components/ui/accordion";
-import { Checkbox } from "@/components/ui/checkbox";
-import { useState } from "react";
+} from '@/components/ui/accordion';
+import { Checkbox } from '@/components/ui/checkbox';
 
 const PRICE_OPTIONS = [
-  { label: "Free", value: "free" },
-  { label: "Paid", value: "paid" },
+  { label: 'Free', value: 'free' },
+  { label: 'Paid', value: 'paid' },
 ];
 
 const CATEGORY_OPTIONS = [
   {
     id: 1,
-    label: "Design",
-    value: "design",
+    label: 'Design',
+    value: 'design',
   },
 
   {
     id: 3,
-    label: "Development",
-    value: "development",
+    label: 'Development',
+    value: 'development',
   },
   {
     id: 4,
-    label: "Marketing",
-    value: "marketing",
+    label: 'Marketing',
+    value: 'marketing',
   },
   {
     id: 5,
-    label: "IT & Software",
-    value: "it-software",
+    label: 'IT & Software',
+    value: 'it-software',
   },
   {
     id: 6,
-    label: "Personal Development",
-    value: "personal-development",
+    label: 'Personal Development',
+    value: 'personal-development',
   },
   {
     id: 7,
-    label: "Business",
-    value: "business",
+    label: 'Business',
+    value: 'business',
   },
   {
     id: 8,
-    label: "Photography",
-    value: "photography",
+    label: 'Photography',
+    value: 'photography',
   },
   {
     id: 9,
-    label: "Music",
-    value: "music",
+    label: 'Music',
+    value: 'music',
   },
 ];
 
@@ -64,9 +65,9 @@ export interface FilterState {
 }
 const FilterCourse = () => {
   const [filter, setFilter] = useState<FilterState>({
-    categories: ["development"],
-    price: ["free"],
-    sort: "",
+    categories: ['development'],
+    price: ['free'],
+    sort: '',
   });
 
   //   apply checkbox filter
@@ -74,20 +75,20 @@ const FilterCourse = () => {
     type,
     value,
   }: {
-    type: "categories" | "price";
+    type: 'categories' | 'price';
     value: string;
   }) => {
     const isFilterApplied = filter[type].includes(value);
 
     if (isFilterApplied) {
-      setFilter((prev) => ({
-        ...prev,
-        [type]: prev[type].filter((v) => v !== value),
+      setFilter(previous => ({
+        ...previous,
+        [type]: previous[type].filter(v => v !== value),
       }));
     } else {
-      setFilter((prev) => ({
-        ...prev,
-        [type]: [...prev[type], value],
+      setFilter(previous => ({
+        ...previous,
+        [type]: [...previous[type], value],
       }));
     }
   };
@@ -95,30 +96,30 @@ const FilterCourse = () => {
   return (
     <>
       <div className="hidden lg:block">
-        <Accordion defaultValue={["categories"]} type="multiple">
+        <Accordion defaultValue={['categories']} type="multiple">
           {/* Categories filter */}
           <AccordionItem value="categories">
             <AccordionTrigger className="py-3 text-sm text-gray-400 hover:text-gray-500">
               <span className="font-medium text-gray-900">Categories</span>
             </AccordionTrigger>
 
-            <AccordionContent className="pt-6 animate-none">
+            <AccordionContent className="animate-none pt-6">
               <ul className="space-y-4">
-                {CATEGORY_OPTIONS.map((option, optionIdx) => (
+                {CATEGORY_OPTIONS.map((option, optionIndex) => (
                   <li key={option.value} className="flex items-center">
                     <Checkbox
-                      id={`category-${optionIdx}`}
+                      id={`category-${optionIndex}`}
                       onCheckedChange={() => {
                         applyArrayFilter({
-                          type: "categories",
+                          type: 'categories',
                           value: option.value,
                         });
                       }}
                       checked={filter.categories.includes(option.value)}
                     />
                     <label
-                      htmlFor={`category-${optionIdx}`}
-                      className="ml-3 text-sm text-gray-600 cursor-pointer"
+                      htmlFor={`category-${optionIndex}`}
+                      className="ml-3 cursor-pointer text-sm text-gray-600"
                     >
                       {option.label}
                     </label>
@@ -133,23 +134,23 @@ const FilterCourse = () => {
               <span className="font-medium text-gray-900">Price</span>
             </AccordionTrigger>
 
-            <AccordionContent className="pt-6 animate-none">
+            <AccordionContent className="animate-none pt-6">
               <ul className="space-y-4">
-                {PRICE_OPTIONS.map((option, optionIdx) => (
+                {PRICE_OPTIONS.map((option, optionIndex) => (
                   <li key={option.value} className="flex items-center">
                     <Checkbox
-                      id={`price-${optionIdx}`}
+                      id={`price-${optionIndex}`}
                       onCheckedChange={() => {
                         applyArrayFilter({
-                          type: "price",
+                          type: 'price',
                           value: option.value,
                         });
                       }}
                       checked={filter.price.includes(option.value)}
                     />
                     <label
-                      htmlFor={`price-${optionIdx}`}
-                      className="ml-3 text-sm text-gray-600 cursor-pointer"
+                      htmlFor={`price-${optionIndex}`}
+                      className="ml-3 cursor-pointer text-sm text-gray-600"
                     >
                       {option.label}
                     </label>

@@ -1,4 +1,4 @@
-import { Course, Courses } from "@/types/course";
+import { Course, Courses } from '@/types/course';
 
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 
@@ -9,9 +9,9 @@ interface CoursesResponse {
 export const fetchCourseLists = async (): Promise<CoursesResponse> => {
   try {
     const response = await fetch(`${baseUrl}/api/courses/get`, {
-      method: "GET",
+      method: 'GET',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
     });
 
@@ -21,13 +21,13 @@ export const fetchCourseLists = async (): Promise<CoursesResponse> => {
 
     const res = await response.json();
     if (res.status !== 200) {
-      throw new Error(res.message || "Failed to fetch courses!");
+      throw new Error(res.message || 'Failed to fetch courses!');
     }
 
     return res;
   } catch (error) {
     throw new Error(
-      error instanceof Error ? error.message : "Failed to fetch courses!"
+      error instanceof Error ? error.message : 'Failed to fetch courses!',
     );
   }
 };
@@ -39,9 +39,9 @@ interface CourseResponse {
 export const fetchCourseById = async (id: string): Promise<CourseResponse> => {
   try {
     const response = await fetch(`${baseUrl}/api/courses/${id}`, {
-      method: "GET",
+      method: 'GET',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
     });
 
@@ -51,13 +51,13 @@ export const fetchCourseById = async (id: string): Promise<CourseResponse> => {
 
     const res = await response.json();
     if (res.status !== 200) {
-      throw new Error(res.message || "Failed to fetch hotels!");
+      throw new Error(res.message || 'Failed to fetch hotels!');
     }
 
     return res;
   } catch (error) {
     throw new Error(
-      error instanceof Error ? error.message : "Failed to fetch hotels!"
+      error instanceof Error ? error.message : 'Failed to fetch hotels!',
     );
   }
 };

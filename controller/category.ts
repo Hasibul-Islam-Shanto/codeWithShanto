@@ -1,4 +1,4 @@
-import { Category } from "@/types/category";
+import { Category } from '@/types/category';
 
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 
@@ -9,9 +9,9 @@ interface CategoriesResponse {
 export const fetchCategoryLists = async (): Promise<CategoriesResponse> => {
   try {
     const response = await fetch(`${baseUrl}/api/categories/get`, {
-      method: "GET",
+      method: 'GET',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
     });
 
@@ -21,13 +21,13 @@ export const fetchCategoryLists = async (): Promise<CategoriesResponse> => {
 
     const res = await response.json();
     if (res.status !== 200) {
-      throw new Error(res.message || "Failed to fetch hotels!");
+      throw new Error(res.message || 'Failed to fetch hotels!');
     }
 
     return res;
   } catch (error) {
     throw new Error(
-      error instanceof Error ? error.message : "Failed to fetch hotels!"
+      error instanceof Error ? error.message : 'Failed to fetch hotels!',
     );
   }
 };

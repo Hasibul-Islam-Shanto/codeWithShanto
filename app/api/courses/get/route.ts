@@ -1,6 +1,7 @@
-import connectMongo from "@/config/db-connect";
-import { getCourseLists } from "@/services/course.query";
-import { NextResponse } from "next/server";
+import { NextResponse } from 'next/server';
+
+import connectMongo from '@/config/db-connect';
+import { getCourseLists } from '@/services/course.query';
 
 export async function GET() {
   try {
@@ -20,7 +21,7 @@ export async function GET() {
 
     return NextResponse.json({
       status: 500,
-      message: "Something went wrong",
+      message: 'Something went wrong',
     });
   }
 }
