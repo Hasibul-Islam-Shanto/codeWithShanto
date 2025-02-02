@@ -1,8 +1,9 @@
-import ShowError from "@/components/show-error";
-import { fetchUserById } from "@/controller/user";
-import { MessageSquare, Presentation, Star, UsersRound } from "lucide-react";
-import Image from "next/image";
-import React from "react";
+import { MessageSquare, Presentation, Star, UsersRound } from 'lucide-react';
+import Image from 'next/image';
+import React from 'react';
+
+import ShowError from '@/components/show-error';
+import { fetchUserById } from '@/controller/user';
 
 const CourseInstructor = async ({ userId }: { userId: string }) => {
   try {
@@ -10,15 +11,15 @@ const CourseInstructor = async ({ userId }: { userId: string }) => {
     const instructorDetails = response.data;
     return (
       <>
-        <div className="bg-gray-50 rounded-md p-8">
-          <div className="md:flex md:gap-x-5 mb-8">
-            <div className="h-[310px] w-[270px] max-w-full  flex-none rounded mb-5 md:mb-0">
+        <div className="rounded-md bg-gray-50 p-8">
+          <div className="mb-8 md:flex md:gap-x-5">
+            <div className="mb-5 h-[310px] w-[270px] max-w-full flex-none rounded md:mb-0">
               <Image
                 src="/assets/images/profile.jpg"
                 alt="Instrctor-Image"
                 height={310}
                 width={270}
-                className="w-full h-full object-cover rounded"
+                className="h-full w-full rounded object-cover"
               />
             </div>
             <div className="flex-1">
@@ -26,7 +27,7 @@ const CourseInstructor = async ({ userId }: { userId: string }) => {
                 <h4 className="text-[34px] font-bold leading-[51px]">
                   {`${instructorDetails?.firstName} ${instructorDetails?.lastName}`}
                 </h4>
-                <div className="text-gray-600 font-medium mb-6">
+                <div className="mb-6 font-medium text-gray-600">
                   {instructorDetails?.designation}
                 </div>
                 <ul className="list space-y-4">

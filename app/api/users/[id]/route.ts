@@ -1,13 +1,14 @@
-import connectMongo from "@/config/db-connect";
-import { getCourseByUserId } from "@/services/course.query";
-import { getEnrollmentsByCourseId } from "@/services/enrollments.query";
-import { getTestimonialsByCourseId } from "@/services/testimonials.query";
-import { getUserById } from "@/services/user.query";
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest, NextResponse } from 'next/server';
+
+import connectMongo from '@/config/db-connect';
+import { getCourseByUserId } from '@/services/course.query';
+import { getEnrollmentsByCourseId } from '@/services/enrollments.query';
+import { getTestimonialsByCourseId } from '@/services/testimonials.query';
+import { getUserById } from '@/services/user.query';
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: { id: string } },
 ) {
   try {
     await connectMongo();
@@ -15,28 +16,28 @@ export async function GET(
 
     const courses = await getCourseByUserId(params?.id);
     const enrollments = await Promise.all(
-      courses.map(async (course) => {
+      courses.map(async course => {
         const enrollments = await getEnrollmentsByCourseId(
-          course._id as string
+          course._id as string,
         );
         return enrollments;
-      })
+      }),
     );
     const testimonials = await Promise.all(
-      courses.map(async (course) => {
+      courses.map(async course => {
         const testimonials = await getTestimonialsByCourseId(
-          course._id as string
+          course._id as string,
         );
         return testimonials;
-      })
+      }),
     );
 
     const totalEnrollments = enrollments.flat().length;
     const totalTestimonials = testimonials.flat();
 
     const avgRating =
-      totalTestimonials.reduce(function (acc, obj) {
-        return acc + obj.rating;
+      totalTestimonials.reduce(function (accumulator, object) {
+        return accumulator + object.rating;
       }, 0) / totalTestimonials.length;
 
     const userDetails = {
@@ -60,7 +61,7 @@ export async function GET(
     }
     return NextResponse.json({
       status: 500,
-      message: "Something went wrong",
+      message: 'Something went wrong',
     });
   }
 }

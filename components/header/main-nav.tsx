@@ -1,16 +1,18 @@
-import Link from "next/link";
-import { cn } from "@/lib/utils";
-import logo from "@/assets/logo.png";
-import Image from "next/image";
-import { Button, buttonVariants } from "../ui/button";
+import Image from 'next/image';
+import Link from 'next/link';
+
+import logo from '@/assets/logo.png';
+import { cn } from '@/lib/utils';
+
+import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
+import { Button, buttonVariants } from '../ui/button';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "../ui/dropdown-menu";
-import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
-import MobileViewNav from "./mobile-view-nav";
+} from '../ui/dropdown-menu';
+import MobileViewNav from './mobile-view-nav';
 
 const MainNav = ({
   items,
@@ -30,22 +32,22 @@ const MainNav = ({
             {items?.map((item, index) => (
               <Link
                 key={index}
-                href={item.disabled ? "#" : item.href}
+                href={item.disabled ? '#' : item.href}
                 className={cn(
-                  "flex items-center text-lg font-medium transition-colors hover:text-foreground/80 sm:text-sm"
+                  'flex items-center text-lg font-medium transition-colors hover:text-foreground/80 sm:text-sm',
                 )}
               >
                 {item.title}
               </Link>
             ))}
           </nav>
-        ) : null}
+        ) : undefined}
       </div>
       <nav className="flex items-center gap-3">
-        <div className="items-center gap-3 hidden lg:flex">
+        <div className="hidden items-center gap-3 lg:flex">
           <Link
             href="/login"
-            className={cn(buttonVariants({ size: "sm" }), "px-4")}
+            className={cn(buttonVariants({ size: 'sm' }), 'px-4')}
           >
             Login
           </Link>
@@ -55,7 +57,7 @@ const MainNav = ({
                 Register
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="w-56 mt-4">
+            <DropdownMenuContent align="end" className="mt-4 w-56">
               <DropdownMenuItem className="cursor-pointer">
                 <Link href="">Student</Link>
               </DropdownMenuItem>
@@ -77,7 +79,7 @@ const MainNav = ({
               </Avatar>
             </div>
           </DropdownMenuTrigger>
-          <DropdownMenuContent align="end" className="w-56 mt-4">
+          <DropdownMenuContent align="end" className="mt-4 w-56">
             <DropdownMenuItem className="cursor-pointer" asChild>
               <Link href="account">Profile</Link>
             </DropdownMenuItem>

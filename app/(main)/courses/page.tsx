@@ -1,11 +1,12 @@
-import SearchCourse from "./_components/SearchCourse";
-import SortCourse from "./_components/SortCourse";
-import FilterCourseMobile from "./_components/FilterCourseMobile";
-import ActiveFilter from "./_components/ActiveFilter";
-import FilterCourse from "./_components/FilterCourse";
-import CourseCard from "@/components/course/CourseCard";
-import { fetchCourseLists } from "@/controller/course";
-import ShowError from "@/components/show-error";
+import CourseCard from '@/components/course/course-card';
+import ShowError from '@/components/show-error';
+import { fetchCourseLists } from '@/controller/course';
+
+import ActiveFilter from './_components/active-filter';
+import FilterCourse from './_components/filter-course';
+import FilterCourseMobile from './_components/filter-course-mobile';
+import SearchCourse from './_components/search-course';
+import SortCourse from './_components/sort-course';
 
 const CoursesPage = async () => {
   try {
@@ -14,9 +15,9 @@ const CoursesPage = async () => {
     return (
       <section
         id="courses"
-        className="container space-y-6   dark:bg-transparent py-6"
+        className="container space-y-6 py-6 dark:bg-transparent"
       >
-        <div className="flex items-baseline justify-between  border-gray-200 border-b pb-6 flex-col gap-4 lg:flex-row">
+        <div className="flex flex-col items-baseline justify-between gap-4 border-b border-gray-200 pb-6 lg:flex-row">
           <SearchCourse />
           <div className="flex items-center justify-end gap-2 max-lg:w-full">
             <SortCourse />
@@ -26,17 +27,17 @@ const CoursesPage = async () => {
 
         <ActiveFilter
           filter={{
-            categories: ["development"],
-            price: ["free"],
-            sort: "",
+            categories: ['development'],
+            price: ['free'],
+            sort: '',
           }}
         />
 
         <section className="pb-24 pt-6">
           <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4">
             <FilterCourse />
-            <div className="lg:col-span-3 grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4">
-              {courses.map((course) => {
+            <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-2 lg:col-span-3 lg:grid-cols-3 xl:grid-cols-3">
+              {courses.map(course => {
                 return <CourseCard key={course._id} course={course} />;
               })}
             </div>

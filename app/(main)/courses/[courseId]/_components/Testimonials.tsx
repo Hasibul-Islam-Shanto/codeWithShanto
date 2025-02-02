@@ -1,14 +1,15 @@
-import SectionTitle from "@/components/section-title";
+import SectionTitle from '@/components/section-title';
+import ShowError from '@/components/show-error';
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from "@/components/ui/carousel";
-import TestimonialCard from "./TestimonialCard";
-import { fetchTestimonialsByCourseId } from "@/controller/testimonials";
-import ShowError from "@/components/show-error";
+} from '@/components/ui/carousel';
+import { fetchTestimonialsByCourseId } from '@/controller/testimonials';
+
+import TestimonialCard from './testimonial-card';
 
 const Testimonials = async ({ courseId }: { courseId: string }) => {
   try {
@@ -23,14 +24,14 @@ const Testimonials = async ({ courseId }: { courseId: string }) => {
               <SectionTitle className="mb-6">Testimonials</SectionTitle>
               <Carousel
                 opts={{
-                  align: "start",
+                  align: 'start',
                 }}
-                className="max-2xl:w-[90%] w-full mx-auto"
+                className="mx-auto w-full max-2xl:w-[90%]"
               >
                 <CarouselPrevious />
                 <CarouselNext />
                 <CarouselContent className="py-4">
-                  {testimonials.map((testimonial) => (
+                  {testimonials.map(testimonial => (
                     <CarouselItem
                       key={testimonial._id}
                       className="md:basis-1/2 lg:basis-1/3"
@@ -43,8 +44,8 @@ const Testimonials = async ({ courseId }: { courseId: string }) => {
             </div>
           </section>
         ) : (
-          <div className="w-full flex justify-center items-center py-5">
-            <span className="text-slate-500 text-xl font-[500]">
+          <div className="flex w-full items-center justify-center py-5">
+            <span className="text-xl font-[500] text-slate-500">
               Currently no testimonials are available.
             </span>
           </div>

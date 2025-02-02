@@ -6,23 +6,23 @@ import {
   SelectLabel,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
+} from '@/components/ui/select';
 
 const SORT_OPTIONS = [
-  { label: "Price: Low to High", value: "price-asc" },
-  { label: "Price: High to Low", value: "price-desc" },
+  { label: 'Price: Low to High', value: 'price-asc' },
+  { label: 'Price: High to Low', value: 'price-desc' },
 ];
 const SortCourse = () => {
   return (
     <>
       <Select>
-        <SelectTrigger className="w-[180px] border-none !border-b focus:ring-0 focus:ring-offset-0  overflow-hidden">
+        <SelectTrigger className="w-[180px] overflow-hidden !border-b border-none focus:ring-0 focus:ring-offset-0">
           <SelectValue placeholder="Sort By" />
         </SelectTrigger>
         <SelectContent>
           <SelectGroup>
             <SelectLabel>Select an option</SelectLabel>
-            {SORT_OPTIONS.map((option) => (
+            {SORT_OPTIONS.map(option => (
               <SelectItem
                 className="cursor-pointer"
                 key={option.value}

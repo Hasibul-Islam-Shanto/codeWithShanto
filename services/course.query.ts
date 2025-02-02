@@ -1,21 +1,21 @@
-import { Category } from "@/model/category-model";
-import { Course } from "@/model/course-model";
+import { Category } from '@/model/category-model';
+import { Course } from '@/model/course-model';
 // import { Module } from "@/model/module-model";
-import { User } from "@/model/user-model";
+import { User } from '@/model/user-model';
 
 export const getCourseLists = async () => {
   const courses = await Course.find({})
     .select([
-      "title",
-      "subtitle",
-      "thumbnail",
-      "modules",
-      "price",
-      "category",
-      "instructor",
+      'title',
+      'subtitle',
+      'thumbnail',
+      'modules',
+      'price',
+      'category',
+      'instructor',
     ])
     .populate({
-      path: "category",
+      path: 'category',
       model: Category,
     });
   return courses;
@@ -24,13 +24,13 @@ export const getCourseLists = async () => {
 export const getCourseById = async (id: string) => {
   const course = await Course.findById(id)
     .populate({
-      path: "category",
+      path: 'category',
       model: Category,
     })
     .populate({
-      path: "instructor",
+      path: 'instructor',
       model: User,
-      select: ["firstName", "lastName"],
+      select: ['firstName', 'lastName'],
     })
     .lean();
 

@@ -1,4 +1,4 @@
-import mongoose, { Schema, Document, Types } from "mongoose";
+import mongoose, { Schema, Document, Types } from 'mongoose';
 
 interface ICourse extends Document {
   title: string;
@@ -34,7 +34,7 @@ const courseSchema = new Schema<ICourse>({
     required: true,
     type: String,
   },
-  modules: [{ type: Schema.Types.ObjectId, ref: "Module" }],
+  modules: [{ type: Schema.Types.ObjectId, ref: 'Module' }],
   price: {
     required: true,
     type: Number,
@@ -43,10 +43,10 @@ const courseSchema = new Schema<ICourse>({
     required: true,
     type: Boolean,
   },
-  category: { type: Schema.Types.ObjectId, ref: "Category" },
-  instructor: { type: Schema.Types.ObjectId, ref: "User" },
-  quizSet: { type: Schema.Types.ObjectId, ref: "Quizset" },
-  testimonials: [{ type: Schema.Types.ObjectId, ref: "Testimonial" }],
+  category: { type: Schema.Types.ObjectId, ref: 'Category' },
+  instructor: { type: Schema.Types.ObjectId, ref: 'User' },
+  quizSet: { type: Schema.Types.ObjectId, ref: 'Quizset' },
+  testimonials: [{ type: Schema.Types.ObjectId, ref: 'Testimonial' }],
   learning: {
     required: true,
     type: [String],
@@ -62,4 +62,4 @@ const courseSchema = new Schema<ICourse>({
 });
 
 export const Course = (mongoose.models.Course ||
-  mongoose.model<ICourse>("Course", courseSchema)) as mongoose.Model<ICourse>;
+  mongoose.model<ICourse>('Course', courseSchema)) as mongoose.Model<ICourse>;

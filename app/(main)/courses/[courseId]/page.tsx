@@ -1,11 +1,13 @@
-import CourseDetailsIntro from "./_components/CourseDetailsIntro";
-import CourseDetails from "./_components/CourseDetails";
-import Testimonials from "./_components/Testimonials";
-import RelatedCourses from "./_components/RelatedCourses";
-import { fetchCourseById } from "@/controller/course";
-import ShowError from "@/components/show-error";
-import { Suspense } from "react";
-import Loader from "@/components/loader";
+import { Suspense } from 'react';
+
+import Loader from '@/components/loader';
+import ShowError from '@/components/show-error';
+import { fetchCourseById } from '@/controller/course';
+
+import CourseDetails from './_components/course-details';
+import CourseDetailsIntro from './_components/course-details-intro';
+import RelatedCourses from './_components/related-courses';
+import Testimonials from './_components/testimonials';
 
 const SingleCoursePage = async ({
   params,
@@ -21,7 +23,7 @@ const SingleCoursePage = async ({
         <CourseDetails course={course} />
         <Suspense
           fallback={
-            <div className="flex justify-center items-center">
+            <div className="flex items-center justify-center">
               <Loader />
             </div>
           }

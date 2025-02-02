@@ -1,19 +1,20 @@
-import { Button } from "@/components/ui/button";
+import { X } from 'lucide-react';
 
-import { X } from "lucide-react";
-import { FilterState } from "./FilterCourse";
+import { Button } from '@/components/ui/button';
+
+import { FilterState } from './filter-course';
 
 const ActiveFilter = ({ filter }: { filter: FilterState }) => {
   return (
     <>
-      <div className="flex items-center gap-2 flex-wrap">
+      <div className="flex flex-wrap items-center gap-2">
         {/* active categories */}
         {filter.categories.length > 0 &&
           filter.categories.map((category: string) => (
             <Button
               key={category}
               variant="ghost"
-              className="text-xs h-7 bg-muted rounded-full gap-1 text-sky-700"
+              className="h-7 gap-1 rounded-full bg-muted text-xs text-sky-700"
               //   onClick={() =>
               //     applyArrayFilter({ type: "categories", value: category })
               //   }
@@ -24,11 +25,11 @@ const ActiveFilter = ({ filter }: { filter: FilterState }) => {
           ))}
         {/* active prices */}
         {filter.price.length > 0 &&
-          filter.price.map((price) => (
+          filter.price.map(price => (
             <Button
               key={price}
               variant="ghost"
-              className="text-xs h-7 bg-muted rounded-full gap-1 text-sky-700"
+              className="h-7 gap-1 rounded-full bg-muted text-xs text-sky-700"
               //   onClick={() => applyArrayFilter({ type: "price", value: price })}
             >
               {price}

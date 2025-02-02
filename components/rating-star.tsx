@@ -1,5 +1,5 @@
-import { Star } from "lucide-react";
-import React from "react";
+import { Star } from 'lucide-react';
+import React from 'react';
 
 const RatingStar = ({ rating }: { rating: number }) => {
   return (
@@ -9,7 +9,7 @@ const RatingStar = ({ rating }: { rating: number }) => {
           <Star
             key={index}
             className={`${
-              index < rating ? "text-yellow-500" : "text-gray-300"
+              index < rating ? 'text-yellow-500' : 'text-gray-300'
             } h-5 w-5`}
           />
         ))}

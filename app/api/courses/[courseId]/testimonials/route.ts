@@ -1,10 +1,11 @@
-import connectMongo from "@/config/db-connect";
-import { getTestimonialsByCourseId } from "@/services/testimonials.query";
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest, NextResponse } from 'next/server';
+
+import connectMongo from '@/config/db-connect';
+import { getTestimonialsByCourseId } from '@/services/testimonials.query';
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { courseId: string } }
+  { params }: { params: { courseId: string } },
 ) {
   try {
     await connectMongo();
@@ -22,7 +23,7 @@ export async function GET(
     }
     return NextResponse.json({
       status: 500,
-      data: "Something went wrong!",
+      data: 'Something went wrong!',
     });
   }
 }
