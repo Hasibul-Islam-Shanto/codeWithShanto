@@ -6,8 +6,8 @@ import { fetchCourseById } from '@/controller/course';
 
 import CourseDetails from './_components/course-details';
 import CourseDetailsIntro from './_components/course-details-intro';
-import RelatedCourses from './_components/related-courses';
-import Testimonials from './_components/testimonials';
+import RelatedCourses from './_components/course-related-courses';
+import Testimonials from './_components/course-testimonials';
 
 const SingleCoursePage = async ({
   params,

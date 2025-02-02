@@ -9,7 +9,7 @@ import {
 } from '@/components/ui/carousel';
 import { fetchTestimonialsByCourseId } from '@/controller/testimonials';
 
-import TestimonialCard from './testimonial-card';
+import TestimonialCard from './course-testimonial-card';
 
 const Testimonials = async ({ courseId }: { courseId: string }) => {
   try {
